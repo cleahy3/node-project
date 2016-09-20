@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 var films = [{
     id: 0,
@@ -28,7 +7,7 @@ var films = [{
 {
     id: 1,
     title: "Barb Wire",
-    description: "Barb Wire (Pamela Anderson) owns the Hammerhead, a nightclub in Steel Harbor — "the last free city" in a United States ravaged by the civil war — and she brings in extra cash working as a mercenary and bounty hunter. Chief of Police Willis (Xander Berkeley) raids her club. Willis's target is fugitive Dr. Corrina  Devonshire (Victoria Rowell), a former government scientist with information about a bioweapon being developed by her former superior, Colonel Pryzer (Steve Railsback) of the Congressional Directorate. Dr. Devonshire hopes to escape to Canada in order to make this information public."
+    description: "Barb Wire (Pamela Anderson) owns the Hammerhead, a nightclub in Steel Harbor — \"the last free city\" in a United States ravaged by the civil war — and she brings in extra cash working as a mercenary and bounty hunter. Chief of Police Willis (Xander Berkeley) raids her club. Willis's target is fugitive Dr. Corrina  Devonshire (Victoria Rowell), a former government scientist with information about a bioweapon being developed by her former superior, Colonel Pryzer (Steve Railsback) of the Congressional Directorate. Dr. Devonshire hopes to escape to Canada in order to make this information public."
 },
 {
     id: 2,
