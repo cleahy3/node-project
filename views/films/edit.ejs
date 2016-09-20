@@ -1,8 +1,9 @@
-<form method='GET'>
+<form action="/films" method='POST'>
 	<legend>
 		<label>ID: 		</label><input type="text" name="ID" id="id" value=" <%= film.id %>"> <br>
 		<label>Title: 	</label><input type="text" name="Title" id="title" value="<%= film.title %>"> <br>
 		<label>Description: 	</label><br><textarea rows="4" cols="50"> <%= film.description %> </textarea>
 		</textarea>
+		<input type="submit" value="save film">
 	</legend>
 </form>
