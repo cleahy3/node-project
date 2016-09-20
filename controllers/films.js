@@ -55,7 +55,12 @@ function newFilms(req, res) {
 
 // UPDATE
 function updateFilms(req, res) {
-  res.send("UPDATE:" + req.params.id);
+   var film = films[req.params.id];
+  film.title = req.body.title;
+  film.description = req.body.description;
+
+  films[req.params.id]=film;
+  res.redirect("/films");
 }
 
 // DELETE
@@ -66,9 +71,12 @@ function deleteFilms(req, res) {
 // EDIT
 function editFilms(req, res) {
 	var film = films[req.params.id];
-	res.render("films/edit", {
-		title:("edit film: "+film.id),
-		film:film});
+ 
+  res.render("films/edit" , {
+    title: "Edit Film",
+    film: film,
+    edit:true
+  });
 
 }
 

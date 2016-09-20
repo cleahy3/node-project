@@ -1,8 +1,12 @@
-<form method='GET'>
+<form action = "films/<%= film.id %>" method = "POST">
+
 	<legend>
-		<label>ID: </label><br><input type="text" name="ID" id="id"><br>
-		<label>Title: </label><br><input type="text" name="Title" id="title"/><br>
-		<label>Body: </label><br><textarea rows="4" cols="50">
+	<% if(edit){%>
+	<input type="hidden" name="_method" value="put">
+	<%} %>
+		<label>Title: </label><br><input type="text" name="title" id="title" value="<%= film.title %>"/><br>
+		<label>Description: </label><br><textarea rows="4" cols="50" name="description">
+			<%= film.description %>
 		</textarea>
 		<input type="submit" value="save film">
 	</legend>
