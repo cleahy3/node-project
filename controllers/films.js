@@ -1,6 +1,36 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // INDEX
 function indexFilms(req, res) {
-  res.send("<h1>Homepage</h1>");
+  res.render("films/index",{
+  	title:'All Films',
+  	films:films
+  });
 }
 
 // SHOW
@@ -30,7 +60,8 @@ function deleteFilms(req, res) {
 
 // EDIT
 function editFilms(req, res) {
-  res.send("EDIT:" + req.params.id);
+	var film = films[req.params.id];
+	res.render("films/edit", {film:film});
 }
 
 module.exports = {
