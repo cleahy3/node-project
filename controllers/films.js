@@ -43,7 +43,7 @@ function createFilms(req, res) {
 
 // NEW
 function newFilms(req, res) {
-  res.send("NEW");
+  res.render('films/new',{title:'New Film'});
 }
 
 // UPDATE
