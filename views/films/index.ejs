@@ -1,11 +1,11 @@
 <h1>Welcome to the homepage!</h1>
 <% for(var i = 0; i<films.length; i++){ %>
-	<a href="/<%= films[i].id %>">
+	<a href="films/<%= films[i].id %>">
 		<h2>
 			<%= films[i].title %> 
 		</h2>
 	</a>
 	<p> <%= films[i].description %> </p>
-	<a href="/<%= films[i].id %>/edit">Edit</a>
+	<a href="films/<%= films[i].id %>/edit">Edit</a>
 <%}%>
 	
