@@ -60,7 +60,7 @@ function deleteFilms(req, res) {
 function editFilms(req, res) {
 	var film = films[req.params.id];
 	res.render("films/edit", {
-		title:"edit film: "+film.id,
+		title:("edit film: "+film.id),
 		film:film});
 }
 

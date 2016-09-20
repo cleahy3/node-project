@@ -13,6 +13,6 @@ filmRouter.route('/films/:id')
 	.get(filmController.show)
 	.patch(filmController.update)
 	.delete(filmController.delete);
-filmRouter.get("films/:id/edit",filmController.edit);
+filmRouter.get("/films/:id/edit",filmController.edit);
 
 module.exports = filmRouter;
