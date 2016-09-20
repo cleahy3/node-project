@@ -11,7 +11,7 @@ filmRouter.route('/films')
 	.post(filmController.create);
 filmRouter.route('/films/:id')
 	.get(filmController.show)
-	.patch(filmController.update)
+	.put(filmController.update)
 	.delete(filmController.delete);
 filmRouter.get("/films/:id/edit",filmController.edit);
 

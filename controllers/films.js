@@ -39,12 +39,13 @@ function showFilms(req, res) {
 // CREATE
 function createFilms(req, res) {
  
-  film={
-    id:films.length,
+   var film = {
+    id: films.length,
     title: req.body.title,
-    description: req.body.description
-  }
-  films.push(film); 
+    body: req.body.body
+  };
+  films.push(film);
+
   res.redirect("/films");
 }
 
@@ -60,11 +61,12 @@ function newFilms(req, res) {
 
 // UPDATE
 function updateFilms(req, res) {
-   var film = films[req.params.id];
+   
   film.title = req.body.title;
-  film.description = req.body.description;
+  film.body = req.body.description;
 
-  films[req.params.id]=film;
+  films[req.params.id] = film;
+
   res.redirect("/films");
 }
 
@@ -75,12 +77,10 @@ function deleteFilms(req, res) {
 
 // EDIT
 function editFilms(req, res) {
-	var film = films[req.params.id];
- 
-  res.render("films/edit" , {
-    title: "Edit Film",
-    film: film,
-    edit:true
+	 res.render("films/edit" , {
+    title: "Edit Post",
+    film: films[req.params.id],
+    edit: true
   });
 
 }
