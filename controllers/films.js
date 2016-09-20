@@ -39,17 +39,36 @@ function showFilms(req, res) {
 
 // CREATE
 function createFilms(req, res) {
-  res.send("CREATE");
+ 
+   var film = {
+    id: films.length,
+    title: req.body.title,
+    body: req.body.body
+  };
+  films.push(film);
+
+  res.redirect("/films");
 }
 
 // NEW
 function newFilms(req, res) {
-  res.send("NEW");
+  var film={
+    id:"",
+    title: "",
+    description: ""
+  }
+  res.render('films/new',{title:'New Film',film:film,edit:false});
 }
 
 // UPDATE
 function updateFilms(req, res) {
-  res.send("UPDATE:" + req.params.id);
+   
+  film.title = req.body.title;
+  film.body = req.body.description;
+
+  films[req.params.id] = film;
+
+  res.redirect("/films");
 }
 
 // DELETE
@@ -59,10 +78,12 @@ function deleteFilms(req, res) {
 
 // EDIT
 function editFilms(req, res) {
-	var film = films[req.params.id];
-	res.render("films/edit", {
-		title:"edit film: "+film.id,
-		film:film});
+	 res.render("films/edit" , {
+    title: "Edit Post",
+    film: films[req.params.id],
+    edit: true
+  });
+
 }
 
 module.exports = {

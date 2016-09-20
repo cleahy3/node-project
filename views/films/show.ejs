@@ -2,3 +2,7 @@
 <h2> Title: <%= film.title %></h2>
 <p> <strong>Body: </strong> <%= film.description %></p>
 <a href="/films/<%= film.id %>/edit">Edit</a>
+<form action="/<%= film.id %>" method="POST">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete">
+</form>
