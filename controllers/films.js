@@ -50,7 +50,12 @@ function createFilms(req, res) {
 
 // NEW
 function newFilms(req, res) {
-  res.render('films/new',{title:'New Film'});
+  var film={
+    id:"",
+    title: "",
+    description: ""
+  }
+  res.render('films/new',{title:'New Film',film:film,edit:false});
 }
 
 // UPDATE
