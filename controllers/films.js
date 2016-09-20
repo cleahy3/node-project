@@ -31,7 +31,10 @@ function indexFilms(req, res) {
 
 // SHOW
 function showFilms(req, res) {
-  res.send("SHOW:" + req.params.id);
+	var film = films[req.params.id];
+  res.render('films/show',{
+  	title:"show film: "+film.id,
+  	film:film});
 }
 
 // CREATE
@@ -57,7 +60,9 @@ function deleteFilms(req, res) {
 // EDIT
 function editFilms(req, res) {
 	var film = films[req.params.id];
-	res.render("films/edit", {film:film});
+	res.render("films/edit", {
+		title:"edit film: "+film.id,
+		film:film});
 }
 
 module.exports = {
