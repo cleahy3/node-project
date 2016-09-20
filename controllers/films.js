@@ -38,7 +38,14 @@ function showFilms(req, res) {
 
 // CREATE
 function createFilms(req, res) {
-  res.send("CREATE");
+ 
+  film={
+    id:films.length,
+    title: req.body.title,
+    description: req.body.description
+  }
+  films.push(film); 
+  res.redirect("/films");
 }
 
 // NEW
@@ -62,6 +69,7 @@ function editFilms(req, res) {
 	res.render("films/edit", {
 		title:("edit film: "+film.id),
 		film:film});
+
 }
 
 module.exports = {
