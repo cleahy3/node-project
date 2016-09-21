@@ -1,4 +1,4 @@
-var films = [{
+/*var films = [{
     id: 0,
     title: "The Hobbit",
     description: "An Unexpected Journey tells the tale of Bilbo Baggins (Martin Freeman), who is convinced by the wizard Gandalf (Ian McKellen) to accompany thirteen Dwarves, led by Thorin Oakenshield (Richard Armitage), on a quest to reclaim the Lonely Mountain from the dragon Smaug."
@@ -16,77 +16,123 @@ var films = [{
 {
     id: 3,
     title: "Terminator",
-    description: "The Terminator is a 1984 American science fiction film written and directed by James Cameron, produced by Hemdale Film Corporation and distributed by Orion Pictures. It stars Arnold Schwarzenegger as the Terminator, a cyborg assassin sent back in time from 2029 to 1984 to kill Sarah Connor (Linda Hamilton), whose son will one day become a savior against machines in a post-apocalyptic future. Michael Biehn plays Kyle Reese, a soldier from the future sent back in time to protect Connor"
-},];
+    description: "The Terminator is a 1984 American science fiction film written and directed by James Cameron, produced by Hemdale Film Corporation and distributed by Orion Pictures. It stars Arnold Schwarzenegger as the Terminator, a cyborg assassin sent back in time from 2029 to 1984 to kill Sarah Connor (Linda Hamilton), whose son will one day become a savior against machines in a film-apocalyptic future. Michael Biehn plays Kyle Reese, a soldier from the future sent back in time to protect Connor"
+},]; */
 
+var Film = require('../models/film');
+// INDEX - GET /
+function indexFilms(req , res) {
 
-// INDEX
-function indexFilms(req, res) {
-  res.render("films/index",{
-  	title:'All Films',
-  	films:films
-  });
+ Film.find({}, function(err, films){
+   res.render("films/index" , {
+   title: "films",
+   films: films
+   });
+ });
+
 }
 
-// SHOW
-function showFilms(req, res) {
-	var film = films[req.params.id];
-  res.render('films/show',{
-  	title:"show film: "+film.id,
-  	film:film});
-}
+// SHOW - GET /:id
+function showFilms(req , res) {
+  Film.findById(req.params.id,function(err,film){
+    if(!film ) return res.status(404).send("Not found");
+    if(err) return res.status(500).send(err);
+    res.render("films/show" , 
+    {
+      title: "film",
+      film: film
+    })
+});
 
-// CREATE
-function createFilms(req, res) {
  
-   var film = {
-    id: films.length,
-    title: req.body.title,
-    description: req.body.body
-  };
-  films.push(film);
-
-  res.redirect("/films");
 }
 
-// NEW
-function newFilms(req, res) {
-  var film={
-    id:"",
+// EDIT - GET /:id/edit
+function editFilms(req , res) {
+
+  Film.findById(req.params.id , function(err, film) {
+
+    // check for errors or for no object found
+    if(!film) return res.status(404).send("Not found");
+    if(err) return res.status(500).send(err);
+
+    res.render("films/edit" , {
+      title: "film",
+      film: film,
+      edit: true
+    });
+});
+
+}
+
+// NEW - GET /new
+function newFilms(req , res) {
+
+  // create an empty film
+  var newFilm = {
+    id: "",
     title: "",
-    description: ""
+    body: ""
   }
-  res.render('films/new',{title:'New Film',film:film,edit:false});
-}
 
-// UPDATE
-function updateFilms(req, res) {
-   var film ={
-    id: req.params.id,
-    title :req.body.title,
-    description :req.body.description
-  }
-  films[req.params.id] = film;
-
-  res.redirect("/films");
-}
-
-// DELETE
-function deleteFilms(req, res) {
-  films.splice(req.params.id,1);
-
-  res.redirect("/films")
-}
-
-// EDIT
-function editFilms(req, res) {
-	 res.render("films/edit" , {
-    title: "Edit Post",
-    film: films[req.params.id],
-    edit: true
+  res.render("films/new" , {
+    title: "New Film",
+    film: newFilm,
+    edit: false
   });
 
 }
+
+// DELETE - DELETE /:id
+function deleteFilms(req , res) {
+
+  // tell the data store to remove the film with the id in the request
+  Film.findByIdAndRemove(req.params.id,function(err){
+   res.redirect("/films"); 
+  })
+  
+  // redirect to a GET request
+  
+  
+}
+
+// UPDATE - UPDATE /:id
+function updateFilms(req , res) {
+
+  // data is gathered by body parser animationd placed in req.body
+    
+    // get the film object from our data store
+    Film.findByIdAndUpdate(req.params.id,{$set: req.body},function(err,film){
+      res.redirect("/films");
+ 
+    });
+    
+    // redirect the user to a GET route. We'll go back to the INDEX.
+    
+}
+
+// CREATE - film /
+function createFilms(req , res) {
+
+  // data is gathered by body parser and placed in req.body
+  
+  // create a new film object with that data
+  var film =  new Film(req.body);
+  
+  // store the film in our films array
+  film.save(function(err,film){
+    if(err){
+      return res.status(500).message(err);
+    }
+    console.log("film saved: "+ film);
+    res.status(200).redirect("/films");
+  });
+  
+  // redirect the user to a GET route. We'll go back to the INDEX.
+  
+
+}
+
 
 module.exports = {
   index: indexFilms,
