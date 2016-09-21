@@ -1,14 +1,15 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var app = express();
+
 var ejs = require('ejs');
+var session = require('express-session');
 var layouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var routes = require('./config/routes');
 var port = process.env.PORT || 3000;
 app.set('view engine','ejs');
-
+var app = express();
 app.use(layouts);
 app.use(bodyParser.urlencoded({extended:false}));
 mongoose.connect("mongodb://localhost/films");
@@ -20,6 +21,36 @@ app.use(methodOverride(function(req, res){
     return method
   }
 }));
+app.use(cookieParser());
+
+app.use(function(req,res,next){
+	//saving the cookie to a variable
+	var views = req.cookies.views;
+	//incrementing views
+	views ? views ++ : views = 1;
+	//adding views to the response
+	res.cookie('views',views ,{ maxAge: 60*60*1000});
+	next();
+});
+app.use(session({
+	// stored in database
+	//resave says should sessions be resaved to database if nothing is run
+	resave:false,
+	//should new sessions be saved even if they're empty
+	saveUninitialized: true,
+	//encryption
+	secret: 'spartasupersecretkey'
+}));
+app.use(function(req,res,next){
+	//saving the cookie to a variable
+	var views = req.session.views;
+	//incrementing views
+	views ? views ++ : views = 1;
+	//adding views to the response
+	console.log("User has "+ views+ " page views");
+	req.session.views = views;
+	next();
+});
 app.use(routes);
 
 app.listen(port , function(){
