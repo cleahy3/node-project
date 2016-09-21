@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var app = express();
 var ejs = require('ejs');
 var layouts = require('express-ejs-layouts');
@@ -11,7 +12,7 @@ app.set('view engine','ejs');
 
 app.use(layouts);
 app.use(bodyParser.urlencoded({extended:false}));
-
+mongoose.connect("mongodb://localhost/films");
 app.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
