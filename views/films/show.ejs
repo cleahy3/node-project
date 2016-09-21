@@ -1,0 +1,8 @@
+<h1> Show ID: <%= film.id %></h1>
+<h2> Title: <%= film.title %></h2>
+<p> <strong>Body: </strong> <%= film.description %></p>
+<a href="/films/<%= film.id %>/edit">Edit</a>
+<form action="/films/<%= film.id %>" method="POST">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete">
+</form>
