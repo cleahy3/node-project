@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var routes = require('./config/routes');
 var port = process.env.PORT || 3000;
+
 app.set('view engine','ejs');
 
 app.use(layouts);

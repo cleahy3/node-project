@@ -39,7 +39,7 @@ function showFilms(req, res) {
 
 // CREATE
 function createFilms(req, res) {
- 
+
    var film = {
     id: films.length,
     title: req.body.title,
@@ -62,7 +62,7 @@ function newFilms(req, res) {
 
 // UPDATE
 function updateFilms(req, res) {
-   
+
   film.title = req.body.title;
   film.body = req.body.description;
 

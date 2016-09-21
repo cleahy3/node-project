@@ -6,13 +6,16 @@ var filmRouter = express.Router();
 var filmController = require('../controllers/films');
 
 filmRouter.get('/films/new',filmController.new);
+
 filmRouter.route('/films')
 	.get(filmController.index)
 	.post(filmController.create);
+
 filmRouter.route('/films/:id')
 	.get(filmController.show)
 	.put(filmController.update)
 	.delete(filmController.delete);
+
 filmRouter.get("/films/:id/edit",filmController.edit);
 
 module.exports = filmRouter;
