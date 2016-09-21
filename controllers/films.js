@@ -15,7 +15,7 @@ var films = [{
     description: "The Imperial Forces -- under orders from cruel Darth Vader (David Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their efforts to quell the rebellion against the Galactic Empire. Luke Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of the Millennium Falcon, work together with the companionable droid duo R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the beautiful princess, help the Rebel Alliance, and restore freedom and justice to the Galaxy."
 },
 {
-    id: 0,
+    id: 3,
     title: "Terminator",
     description: "The Terminator is a 1984 American science fiction film written and directed by James Cameron, produced by Hemdale Film Corporation and distributed by Orion Pictures. It stars Arnold Schwarzenegger as the Terminator, a cyborg assassin sent back in time from 2029 to 1984 to kill Sarah Connor (Linda Hamilton), whose son will one day become a savior against machines in a post-apocalyptic future. Michael Biehn plays Kyle Reese, a soldier from the future sent back in time to protect Connor"
 },];
@@ -43,7 +43,7 @@ function createFilms(req, res) {
    var film = {
     id: films.length,
     title: req.body.title,
-    body: req.body.body
+    description: req.body.body
   };
   films.push(film);
 
@@ -63,8 +63,11 @@ function newFilms(req, res) {
 // UPDATE
 function updateFilms(req, res) {
 
-  film.title = req.body.title;
-  film.body = req.body.description;
+   var film ={
+    id: req.params.id,
+    title :req.body.title,
+    description :req.body.description
+  }
 
   films[req.params.id] = film;
 
@@ -73,7 +76,9 @@ function updateFilms(req, res) {
 
 // DELETE
 function deleteFilms(req, res) {
-  res.send("DELETE:" + req.params.id);
+  films.splice(req.params.id,1);
+
+  res.redirect("/films")
 }
 
 // EDIT

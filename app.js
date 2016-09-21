@@ -23,5 +23,5 @@ app.use(methodOverride(function(req, res){
 app.use(routes);
 
 app.listen(port , function(){
-  console.log('app is listening on port 3000');
+  console.log('app is listening on port'+port);
 });
