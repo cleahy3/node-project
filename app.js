@@ -72,6 +72,8 @@ app.use(function(req,res,next){
   };
 });
 
+app.use(express.static(__dirname + '/static'));
+
 app.use(/^\/(?!sessions|users).*/, function(req, res, next) {
   if (!req.user) {
     res.redirect('/sessions/new');
