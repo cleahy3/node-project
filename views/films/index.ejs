@@ -1,6 +1,6 @@
 <h1>Welcome to the homepage!</h1>
 <% for(var i = 0; i<films.length; i++){ %>
-	<a href="films/<%= films[i].id %>">
+	<a href="films/<%= films[i].id %>" id="<%= films[i].id %>">
 		<h2>
 			<%= films[i].title %> 
 		</h2>
