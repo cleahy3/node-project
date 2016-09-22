@@ -18,4 +18,23 @@ filmRouter.route('/films/:id')
 
 filmRouter.get("/films/:id/edit",filmController.edit);
 
-module.exports = filmRouter;
+
+//requiring actor controller
+
+var actorController = require('../controllers/actors');
+
+actorRouter.get('/actors/new',actorController.new);
+
+actorRouter.route('/actors')
+  .get(actorController.index)
+  .post(actorController.create);
+
+actorRouter.route('/actors/:id')
+  .get(actorController.show)
+  .put(actorController.update)
+  .delete(actorController.delete);
+
+actorRouter.get("/actors/:id/edit",actorController.edit);
+
+module.exports = actorRouter;
+
