@@ -1,6 +1,7 @@
 var express = require('express');
 //using just the Router constructor in express
 var filmRouter = express.Router();
+var actorRouter = express.Router();
 
 //requiring the film controller
 var filmController = require('../controllers/films');
