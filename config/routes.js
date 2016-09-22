@@ -1,21 +1,47 @@
 var express = require('express');
 //using just the Router constructor in express
+
 var filmRouter = express.Router();
 
 //requiring the film controller
 var filmController = require('../controllers/films');
 
-filmRouter.get('/films/new',filmController.new);
 
-filmRouter.route('/films')
+module.exports = filmRouter;
+
+var router = express.Router();
+var userController = require('../controllers/users');
+
+//requiring the film controller
+var filmController = require('../controllers/films');
+var sessionsController = require('../controllers/sessions');
+
+//sessions routes
+router.route('/sessions')
+            .post(sessionsController.create)
+            .delete(sessionsController.delete);
+
+router.route('/sessions/new')
+            .get(sessionsController.new);
+
+
+router.get('/films/new',filmController.new);
+router.route('/films')
 	.get(filmController.index)
 	.post(filmController.create);
-
-filmRouter.route('/films/:id')
+router.route('/films/:id')
 	.get(filmController.show)
 	.put(filmController.update)
 	.delete(filmController.delete);
+router.get("/films/:id/edit",filmController.edit);
 
-filmRouter.get("/films/:id/edit",filmController.edit);
 
-module.exports = filmRouter;
+//user router
+router.route('/users')
+		.post(userController.create);
+
+router.route('/users/new')
+		.get(userController.new);
+
+module.exports = router;
+
