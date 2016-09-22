@@ -72,7 +72,7 @@ app.use(function(req,res,next){
   };
 });
 
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(/^\/(?!sessions|users).*/, function(req, res, next) {
   if (!req.user) {
