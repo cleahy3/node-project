@@ -85,3 +85,5 @@ app.use(routes);
 app.listen(port , function(){
   console.log('app is listening on port'+port);
 });
+
+module.exports= app;
