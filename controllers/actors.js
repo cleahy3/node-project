@@ -4,8 +4,9 @@ function indexActors(req , res) {
 
  Actor.find({}, function(err, actors){
    res.render("actors/index" , {
+  title: "All Actors",
    name: "actors",
-   actors: actor
+   actors: actors
    });
  });
 
@@ -18,6 +19,7 @@ function showActors(req , res) {
     if(err) return res.status(500).send(err);
     res.render("actors/show" ,
     {
+       title: "Actors",
       name: "actors",
       actor: actor
     })
@@ -36,6 +38,7 @@ function editActors(req , res) {
     if(err) return res.status(500).send(err);
 
     res.render("actors/edit" , {
+       title: "Edit Actor",
       name: "actor",
       actor: actor,
       edit: true
@@ -51,10 +54,11 @@ function newActors(req , res) {
   var newActor = {
     id: "",
     name: "",
-    body: ""
+    description: ""
   }
 
   res.render("actors/new" , {
+     title: "New Actor",
     name: "New Actor",
     actor: newActor,
     edit: false

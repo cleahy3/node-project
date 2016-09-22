@@ -1,5 +1,8 @@
 var User = require('../models/user');
 
+function getMain(req,res){
+	res.render('index',{title:'Main'});
+}
 function newSession(req,res){
 //handles loggin
 	res.render("sessions/new",{ title: "Login"})
@@ -13,7 +16,7 @@ function createSession(req,res){
 			//creating a user session and putting the user id in it
 			req.session.user = user.id;
 			console.log("SUCCESS!", user)
-			res.redirect("/films");
+			res.redirect("/");
 		}else{
 			if(err){
 				
@@ -36,5 +39,6 @@ function deleteSession(req,res){
 module.exports={
 	new: newSession,
 	create: createSession,
-	delete: deleteSession
+	delete: deleteSession,
+	main:getMain
 }

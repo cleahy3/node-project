@@ -25,7 +25,8 @@ router.route('/sessions')
 router.route('/sessions/new')
             .get(sessionsController.new);
 
-
+router.route('/')
+  .get(sessionsController.main);
 router.get('/films/new',filmController.new);
 router.route('/films')
 	.get(filmController.index)
