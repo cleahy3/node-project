@@ -1,0 +1,16 @@
+html{
+	background: #fff;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+body{
+	background: #000;
+	margin:10px auto;
+	max-width: 25em;
+	border: 3px #777;
+	padding:10px;
+}
+a{
+	color: #fff;
+	padding:1em;
+}

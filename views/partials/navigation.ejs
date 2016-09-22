@@ -1,5 +1,16 @@
 <nav>
-	<a href="/films">Films</a>
-	<a href="/films/new">New Film</a>
+
+  <% if(user.id) { %>
+    <a href="/films">films</a>
+    <a href="/films/new">New Film</a>
+    <form action="/sessions" method="POST">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Logout">
+    </form>
+    <p>Welcome, <%= user.first_name %></p>
+  <% } else { %>
+    <a href="/sessions/new">Login</a>
+    <a href="/users/new">Register</a>
+  <% } %>
 
 </nav>
