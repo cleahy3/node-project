@@ -5,11 +5,13 @@ var ejs = require('ejs');
 var session = require('express-session');
 var layouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
 var routes = require('./config/routes');
 var port = process.env.PORT || 3000;
-app.set('view engine','ejs');
 var app = express();
+app.set('view engine','ejs');
+var User = require('./models/user');
 app.use(layouts);
 app.use(bodyParser.urlencoded({extended:false}));
 mongoose.connect("mongodb://localhost/films");
@@ -51,6 +53,33 @@ app.use(function(req,res,next){
 	req.session.views = views;
 	next();
 });
+//load current user
+app.use(function(req,res,next){
+  if(!req.session.user){
+    res.locals.user = false;
+    next();
+  }else{
+    User.findById(req.session.user, function(err,user){
+    if(user){
+      req.user =user;
+      res.locals.user = user;
+    }else{
+      req.session.user = null;
+    }
+    next(err);
+  });
+    
+  };
+});
+
+app.use(/^\/(?!sessions|users).*/, function(req, res, next) {
+  if (!req.user) {
+    res.redirect('/sessions/new');
+  } else {
+    next();
+  }
+});
+
 app.use(routes);
 
 app.listen(port , function(){
