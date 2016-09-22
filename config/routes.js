@@ -1,5 +1,14 @@
 var express = require('express');
 //using just the Router constructor in express
+
+var filmRouter = express.Router();
+
+//requiring the film controller
+var filmController = require('../controllers/films');
+
+
+module.exports = filmRouter;
+
 var router = express.Router();
 var userController = require('../controllers/users');
 
@@ -35,3 +44,4 @@ router.route('/users/new')
 		.get(userController.new);
 
 module.exports = router;
+

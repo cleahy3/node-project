@@ -1,4 +1,5 @@
 var express = require('express');
+
 var mongoose = require('mongoose');
 
 var ejs = require('ejs');
@@ -15,6 +16,7 @@ var User = require('./models/user');
 app.use(layouts);
 app.use(bodyParser.urlencoded({extended:false}));
 mongoose.connect("mongodb://localhost/films");
+
 app.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
@@ -23,6 +25,7 @@ app.use(methodOverride(function(req, res){
     return method
   }
 }));
+
 app.use(cookieParser());
 
 app.use(function(req,res,next){
@@ -68,7 +71,7 @@ app.use(function(req,res,next){
     }
     next(err);
   });
-    
+
   };
 });
 
@@ -82,10 +85,13 @@ app.use(/^\/(?!sessions|users).*/, function(req, res, next) {
   }
 });
 
+
 app.use(routes);
 
 app.listen(port , function(){
   console.log('app is listening on port'+port);
 });
 
+
 module.exports= app;
+
