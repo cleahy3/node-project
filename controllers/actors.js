@@ -14,7 +14,7 @@ function indexActors(req , res) {
 
 // SHOW - GET /:id
 function showActors(req , res) {
-  actor.findById(req.params.id,function(err,actor){
+  Actor.findById(req.params.id,function(err,actor){
     if(!actor ) return res.status(404).send("Not found");
     if(err) return res.status(500).send(err);
     res.render("actors/show" ,

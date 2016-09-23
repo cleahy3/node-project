@@ -1,6 +1,6 @@
-<h1> Show ID: <%= actor.id %></h1>
-<h2> Title: <%= actor.title %></h2>
-<p> <strong>Body: </strong> <%= actor.description %></p>
+
+<h2> Name: <%= actor.title %></h2>
+<p> <strong>Description: </strong> <%= actor.description %></p>
 <a href="/actors/<%= actor.id %>/edit">Edit</a>
 <form action="/actors/<%= actor.id %>" method="POST">
 <input type="hidden" name="_method" value="DELETE">
