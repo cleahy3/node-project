@@ -1,4 +1,5 @@
 <h1>Welcome to the Film Page!</h1>
+<section class = "all-films">
 <% for(var i = 0; i<films.length; i++){ %>
 	<a href="films/<%= films[i].id %>" id="<%= films[i].id %>">
 		<h2>
@@ -7,4 +8,5 @@
 	</a>
 	<p> <%= films[i].description %> </p>
 	<a href="/films/<%= films[i].id %>/edit">Edit</a>
-<%}%>
+<%}%></section>
+
