@@ -6,7 +6,7 @@ function indexFilms(req , res) {
 
  Film.find({}, function(err, films){
    res.render("films/index" , {
-   title: "films",
+   title: "All Films",
    films: films
    });
  });

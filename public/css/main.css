@@ -17,3 +17,6 @@ a{
 #form{
 	width 80%;	
 }
+textarea{
+	resize: none;
+}

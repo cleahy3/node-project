@@ -1,11 +1,11 @@
 <nav class="navigation">
 
   <% if(user.id) { %>
-    <a href="/films">films</a>
+    <a href="/films">Films</a>
     <a href="/films/new">New Film</a>
-    <a href="/actors">actors</a>
+    <a href="/actors">Actors</a>
     <a href="/actors/new">New Actor</a>
-    <form action="/sessions" method="POST">
+    <form action="/sessions" class="logout-form" method="POST">
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="Logout">
     </form>
