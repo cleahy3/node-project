@@ -5,9 +5,7 @@
 	<input type="hidden" name="_method" value="PUT">
 	<%} %>
 		<label>Name: </label><br><input type="text" name="title" id="title" value="<%= actor.title %>" required/><br>
-		<label>Description: </label><br><textarea rows="4" cols="50" name="description">
-			<%= actor.description %>
-		</textarea>
+		<label>Description: </label><br><textarea rows="4" cols="50" name="description"><%= actor.description %></textarea>
 		<input type="submit" value="save actor">
 	</legend>
 </form>
