@@ -4,8 +4,8 @@
 	<% if(edit){%>
 	<input type="hidden" name="_method" value="PUT">
 	<%} %>
-		<label>Title: </label><br><input type="text" name="title" id="title" value="<%= film.title %>"/><br>
-		<label>Description: </label><br><textarea rows="4" cols="50" max-width="50" name="description">
+		<label>Title: </label><br><input type="text" required name="title" id="title" value="<%= film.title %>"/><br>
+		<label>Description: </label><br><textarea  required rows="4" cols="50" max-width="50" name="description">
 			<%= film.description %>
 		</textarea>
 		<input type="submit" value="save film">
